@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # root to: 'public/homes#top'
 
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     get 'homes/about',          to: 'homes#about',          as: :about
     resources :stamps,  only: [:new]
