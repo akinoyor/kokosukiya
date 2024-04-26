@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  # root to: 'public/homes#top'
 
   scope module: :public do
+    devise_for :users
+    post '/guest_sign_in',      to:'users#guest_sign_in',   as: :guest_sign_in
     root to: 'homes#top'
     get 'homes/about',          to: 'homes#about',          as: :about
     resources :stamps,  only: [:new]
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
     get 'users/confirm',        to: 'users#confirm',        as: :confirm
 
   end
-  devise_for :users
+
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
